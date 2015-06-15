@@ -1,0 +1,16 @@
+[
+{
+  "modid": "magis",
+  "name": "Magis Base",
+  "description": "A base template for Magis mods",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "https://github.com/leoMagis/Magis",
+  "updateUrl": "",
+  "authorList": ["Magis"],
+  "credits": "My bro, Blackjak, for some of the code.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
