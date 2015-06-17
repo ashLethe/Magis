@@ -12,14 +12,13 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 @Mod(modid = Magis.MODID, name = Magis.NAME, version = Magis.VERSION)
 @SuppressWarnings("unused")
 public class Magis {
     public static final String MODID = "magis";
     public static final String NAME = "Magis";
-    public static final String VERSION = "0.0.0";
+    public static final String VERSION = "0.0.1";
 
     public static SimpleNetworkWrapper networkWrapper;
 
@@ -52,22 +51,19 @@ public class Magis {
         //block registration
         GameRegistry.registerBlock(evercrystal, "blockEvercrystal");
 
-        //Recipe registration
-        GameRegistry.addRecipe(
-                new ShapedOreRecipe(
-                        new ItemStack(evercrystal),
-                            "SSS",
-                            "SSS",
-                            "SSS",
-                            'S', "crystalShard"
-                )
-        );
-
         //Item Initialization
         crystalShard = new ItemCrystalShard();
 
         //Item registration
         GameRegistry.registerItem(crystalShard, "itemCrystalShard");
+
+        //Recipe registration
+        ItemStack stackShard = new ItemStack(crystalShard);
+        GameRegistry.addShapedRecipe(new ItemStack(evercrystal),
+                "SSS",
+                "SSS",
+                "SSS",
+                'S', stackShard);
     }
 
     @SuppressWarnings("unused")
