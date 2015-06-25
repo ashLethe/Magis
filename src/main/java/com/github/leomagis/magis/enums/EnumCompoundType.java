@@ -51,11 +51,11 @@ public enum EnumCompoundType {
         EnumCompoundType[] types = values();
 
         int damageValue = itemStack.getItemDamage();
-        if(damageValue < 0 || damageValue > types.length) {
+        if(damageValue < 0 || damageValue >= types.length) {
             damageValue = 0;
         }
 
-        return types[itemStack.getItemDamage()];
+        return types[damageValue];
     }
 
     private final String name;

@@ -2,4 +2,50 @@ tile.blockEvercrystal.name=Evercrystal
 
 item.itemCrystalShard.name=Evercrystal Shard
 
+item.itemCompoundAura.name=Aura Compound
+item.itemCompoundAquis.name=Aquis Compound
+item.itemCompoundEliquis.name=Eliquis Compound
+item.itemCompoundFiirus.name=Fiirus Compound
+item.itemCompoundEartha.name=Eartha Compound
+item.itemCompoundYin.name=Yin Compound
+item.itemCompoundYan.name=Yan Compound
+item.itemCompoundChronus.name=Chronus Compound
+item.itemCompoundPsycos.name=Psycos Compound
+
+item.itemCompoundAuraRune.name=Aura Runic
+item.itemCompoundAquisRune.name=Aquis Runic
+item.itemCompoundEliquisRune.name=Eliquis Runic
+item.itemCompoundFiirusRune.name=Fiirus Runic
+item.itemCompoundEarthaRune.name=Eartha Runic
+item.itemCompoundYinRune.name=Yin Runic
+item.itemCompoundYanRune.name=Yan Runic
+item.itemCompoundChronusRune.name=Chronus Runic
+item.itemCompoundPsycosRune.name=Psycos Runic
+
+item.itemCompoundAuraAir.name=Aura Air Compound
+item.itemCompoundAuraProximity.name=Aura Proximity Compound
+
+item.itemCompoundAquisWater.name=Aquis Water Compound
+item.itemCompoundAquisFluid.name=Aquis Fluidity Compound
+
+item.itemCompoundEliquisElectric.name=Eliquis Electricity Compound
+item.itemCompoundEliquisMagnetic.name=Eliquis Magnetism Compound
+item.itemCompoundEliquisLight.name=Eliquis Light Compound
+
+item.itemCompoundFiirusHeat.name=Fiirus Heat Compound
+item.itemCompoundFiirusPlasma.name=Fiirus Plasma Compound
+item.itemCompoundFiirusKinetic.name=Fiirus Kinetic Compound
+
+item.itemCompoundEarthaEarth.name=Eartha Earth Compound
+item.itemCompoundEarthaMetal.name=Eartha Metal Compound
+item.itemCompoundEarthaSolid.name=Eartha Solidity Compound
+
+item.itemCompoundYinLife.name=Yin Life Compound
+item.itemCompoundYinLife.name=Yin Positive Compound
+item.itemCompoundYinOrder.name=Yin Order Compound
+
+item.itemCompoundYanDeath.name=Yan Death Compound
+item.itemCompoundYanNegative.name=Yan Negative Compound
+item.itemCompoundYanChaos.name=Yan Chaos Compound
+
 itemGroup.tabMagis=Magis
