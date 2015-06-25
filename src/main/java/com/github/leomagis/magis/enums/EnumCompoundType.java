@@ -17,9 +17,11 @@ public enum EnumCompoundType {
     AQUIS_RUNE   ("AquisRune"),
     ELIQUIS_RUNE ("EliquisRune"),
     FIIRUS_RUNE  ("FiirusRune"),
-    EARTTHA_RUNE ("EarthaRune"),
+    EARTHA_RUNE  ("EarthaRune"),
     YIN_RUNE     ("YinRune"),
     YAN_RUNE     ("YanRune"),
+    CHRONUS_RUNE ("ChronusRune"),
+    PSYCO_RUNE   ("PsycoRune"),
 
     AIRY      ("AuraAir"),
     PROXIMITY ("AuraProximity"),
