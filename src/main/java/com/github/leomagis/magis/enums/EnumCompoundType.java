@@ -21,7 +21,7 @@ public enum EnumCompoundType {
     YIN_RUNE     ("YinRune"),
     YAN_RUNE     ("YanRune"),
     CHRONUS_RUNE ("ChronusRune"),
-    PSYCO_RUNE   ("PsycoRune"),
+    PSYCOS_RUNE  ("PsycosRune"),
 
     AIRY      ("AuraAir"),
     PROXIMITY ("AuraProximity"),
