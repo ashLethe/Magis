@@ -2,7 +2,9 @@ package com.github.leomagis.magis;
 
 import com.github.leomagis.magis.block.BlockEvercrystal;
 import com.github.leomagis.magis.item.ItemCrystalShard;
+import com.github.leomagis.magis.item.ItemElementalCompound;
 import com.github.leomagis.magis.proxy.CommonProxy;
+import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,6 +18,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @Mod(modid = Magis.MODID, name = Magis.NAME, version = Magis.VERSION)
 @SuppressWarnings("unused")
 public class Magis {
+
     public static final String MODID = "magis";
     public static final String NAME = "Magis";
     public static final String VERSION = "0.0.1";
@@ -27,6 +30,8 @@ public class Magis {
 
     //Item declaration
     public static ItemCrystalShard crystalShard;
+
+    public static ItemElementalCompound elementalCompound;
 
     @Mod.Instance(value = Magis.MODID)
     public static Magis instance;
@@ -42,8 +47,9 @@ public class Magis {
             return Item.getItemFromBlock(evercrystal);
         }
     };
+
     @SuppressWarnings("unused")
-        @Mod.EventHandler
+    @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         //block Initialization
         evercrystal = new BlockEvercrystal();
@@ -53,9 +59,51 @@ public class Magis {
 
         //Item Initialization
         crystalShard = new ItemCrystalShard();
+        elementalCompound = new ItemElementalCompound();
 
         //Item registration
         GameRegistry.registerItem(crystalShard, "itemCrystalShard");
+        GameRegistry.registerItem(elementalCompound, "itemCompound");
+
+        //Damage-based Item model registration
+        ModelBakery.addVariantName(elementalCompound,
+                "magis:itemCompoundAura",
+                "magis:itemCompoundAquis",
+                "magis:itemCompoundEliquis",
+                "magis:itemCompoundFiirus",
+                "magis:itemCompoundEartha",
+                "magis:itemCompoundYin",
+                "magis:itemCompoundYan",
+                "magis:itemCompoundChronus",
+                "magis:itemCompoundPsycos",
+                "magis:itemCompoundAuraRune",
+                "magis:itemCompoundAquisRune",
+                "magis:itemCompoundEliquisRune",
+                "magis:itemCompoundFiirusRune",
+                "magis:itemCompoundEarthaRune",
+                "magis:itemCompoundYinRune",
+                "magis:itemCompoundYanRune",
+                "magis:itemCompoundChronusRune",
+                "magis:itemCompoundPsycosRune",
+                "magis:itemCompoundAuraAir",
+                "magis:itemCompoundAuraProximity",
+                "magis:itemCompoundAquisWater",
+                "magis:itemCompoundAquisFluid",
+                "magis:itemCompoundEliquisElectric",
+                "magis:itemCompoundEliquisMagnetic",
+                "magis:itemCompoundEliquisLight",
+                "magis:itemCompoundFiirusHeat",
+                "magis:itemCompoundFiirusPlasma",
+                "magis:itemCompoundFiirusKinetic",
+                "magis:itemCompoundEarthaEarth",
+                "magis:itemCompoundEarthaMetal",
+                "magis:itemCompoundEarthaSolid",
+                "magis:itemCompoundYinLife",
+                "magis:itemCompoundYinPositive",
+                "magis:itemCompoundYinOrder",
+                "magis:itemCompoundYanDeath",
+                "magis:itemCompoundYanNegative",
+                "magis:itemCompoundYanChaos");
 
         //Recipe registration
         ItemStack stackShard = new ItemStack(crystalShard);
