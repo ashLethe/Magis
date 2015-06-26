@@ -21,7 +21,7 @@ public class Magis {
 
     public static final String MODID = "magis";
     public static final String NAME = "Magis";
-    public static final String VERSION = "0.0.1";
+    public static final String VERSION = "0.1.1";
 
     public static SimpleNetworkWrapper networkWrapper;
 
@@ -84,26 +84,7 @@ public class Magis {
                 "magis:itemCompoundYinRune",
                 "magis:itemCompoundYanRune",
                 "magis:itemCompoundChronusRune",
-                "magis:itemCompoundPsycosRune",
-                "magis:itemCompoundAuraAir",
-                "magis:itemCompoundAuraProximity",
-                "magis:itemCompoundAquisWater",
-                "magis:itemCompoundAquisFluid",
-                "magis:itemCompoundEliquisElectric",
-                "magis:itemCompoundEliquisMagnetic",
-                "magis:itemCompoundEliquisLight",
-                "magis:itemCompoundFiirusHeat",
-                "magis:itemCompoundFiirusPlasma",
-                "magis:itemCompoundFiirusKinetic",
-                "magis:itemCompoundEarthaEarth",
-                "magis:itemCompoundEarthaMetal",
-                "magis:itemCompoundEarthaSolid",
-                "magis:itemCompoundYinLife",
-                "magis:itemCompoundYinPositive",
-                "magis:itemCompoundYinOrder",
-                "magis:itemCompoundYanDeath",
-                "magis:itemCompoundYanNegative",
-                "magis:itemCompoundYanChaos");
+                "magis:itemCompoundPsycosRune");
 
         //Recipe registration
         ItemStack stackShard = new ItemStack(crystalShard);
