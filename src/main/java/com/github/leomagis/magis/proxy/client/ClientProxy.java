@@ -15,6 +15,8 @@ public class ClientProxy extends CommonProxy {
         ItemModelMesher modelRegistry = Minecraft.getMinecraft().getRenderItem().getItemModelMesher();
         modelRegistry.register(Item.getItemFromBlock(Magis.evercrystal), 0,
                 new ModelResourceLocation("magis:blockEvercrystal", "inventory"));
+        modelRegistry.register(Item.getItemFromBlock(Magis.infusionStation), 0,
+                new ModelResourceLocation("magis:blockInfusionStation", "inventory"));
 
         modelRegistry.register(Magis.crystalShard, 0,
                 new ModelResourceLocation("magis:itemCrystalShard", "inventory"));

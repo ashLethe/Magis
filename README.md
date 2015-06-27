@@ -1,1 +1,1 @@
-# Magis
+# Core for Magis mods.

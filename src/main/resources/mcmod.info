@@ -2,7 +2,7 @@
 {
   "modid": "magis",
   "name": "Magis Base",
-  "description": "A base template for Magis mods",
+  "description": "The core for Magis mods.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "https://github.com/leoMagis/Magis",

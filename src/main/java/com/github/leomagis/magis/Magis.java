@@ -1,6 +1,7 @@
 package com.github.leomagis.magis;
 
 import com.github.leomagis.magis.block.BlockEvercrystal;
+import com.github.leomagis.magis.block.BlockInfusionStation;
 import com.github.leomagis.magis.item.ItemCrystalShard;
 import com.github.leomagis.magis.item.ItemElementalCompound;
 import com.github.leomagis.magis.proxy.CommonProxy;
@@ -27,6 +28,7 @@ public class Magis {
 
     //block declaration
     public static BlockEvercrystal evercrystal;
+    public static BlockInfusionStation infusionStation;
 
     //Item declaration
     public static ItemCrystalShard crystalShard;
@@ -53,9 +55,11 @@ public class Magis {
     public void preInit(FMLPreInitializationEvent event) {
         //block Initialization
         evercrystal = new BlockEvercrystal();
+        infusionStation = new BlockInfusionStation();
 
         //block registration
         GameRegistry.registerBlock(evercrystal, "blockEvercrystal");
+        GameRegistry.registerBlock(infusionStation, "blockInfusionStation");
 
         //Item Initialization
         crystalShard = new ItemCrystalShard();
