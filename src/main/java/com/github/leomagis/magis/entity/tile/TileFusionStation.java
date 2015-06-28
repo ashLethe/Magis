@@ -13,7 +13,7 @@ public class TileFusionStation extends TileEntity implements IInventory {
         super();
     }
 
-    private ItemStack[] inventoryContents;
+    private ItemStack[] inventoryContents = new ItemStack[9];
 
     public ItemStack setSocketContents(int index, EntityPlayer playerIn) {
         if (index != 4) {
