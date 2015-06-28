@@ -12,12 +12,12 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
-public class BlockInfusionStation extends Block implements ITileEntityProvider {
-    public BlockInfusionStation() {
+public class BlockFusionStation extends Block implements ITileEntityProvider {
+    public BlockFusionStation() {
         super(Material.iron);
 
         setCreativeTab(Magis.tabMagis);
-        setUnlocalizedName("blockInfusionStation");
+        setUnlocalizedName("blockFusionStation");
         setHarvestLevel("pickaxe", 1);
         setHardness(5.0F);
         setResistance(30.0F);

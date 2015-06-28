@@ -1,12 +1,12 @@
 {
 "parent": "block/cube",
 "textures": {
-"particle": "magis:blocks/InfusionStationSide",
-"down": "magis:blocks/InfusionStationSide",
-"up": "magis:blocks/InfusionStationTop",
-"north": "magis:blocks/InfusionStationSide",
-"east":"magis:blocks/InfusionStationSide",
-"south": "magis:blocks/InfusionStationSide",
-"west": "magis:blocks/InfusionStationSide"
+"particle": "magis:blocks/FusionStationSide",
+"down": "magis:blocks/FusionStationSide",
+"up": "magis:blocks/FusionStationTop",
+"north": "magis:blocks/FusionStationSide",
+"east":"magis:blocks/FusionStationSide",
+"south": "magis:blocks/FusionStationSide",
+"west": "magis:blocks/FusionStationSide"
 }
 }
