@@ -1,5 +1,5 @@
 {
-  "parent":"magis:block/InfusionStation",
+  "parent":"magis:block/FusionStation",
   "display": {
     "thirdperson": {
       "rotation":[10, -45, 170],
