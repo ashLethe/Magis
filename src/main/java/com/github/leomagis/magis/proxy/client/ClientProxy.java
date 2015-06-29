@@ -1,12 +1,16 @@
 package com.github.leomagis.magis.proxy.client;
 
 import com.github.leomagis.magis.Magis;
+import com.github.leomagis.magis.entity.renderer.RenderFusionStation;
+import com.github.leomagis.magis.entity.tile.TileFusionStation;
 import com.github.leomagis.magis.enums.EnumCompoundType;
 import com.github.leomagis.magis.proxy.CommonProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ClientProxy extends CommonProxy {
 
@@ -132,5 +136,6 @@ public class ClientProxy extends CommonProxy {
                 EnumCompoundType.CHAOTIC.ordinal(),
                 new ModelResourceLocation("magis:itemCompoundYan", "inventory"));
 
+        ClientRegistry.bindTileEntitySpecialRenderer(TileFusionStation.class, new RenderFusionStation());
     }
 }

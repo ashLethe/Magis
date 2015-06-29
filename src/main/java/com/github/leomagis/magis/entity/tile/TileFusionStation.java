@@ -1,6 +1,7 @@
 package com.github.leomagis.magis.entity.tile;
 
 import com.github.leomagis.magis.Magis;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -14,19 +15,33 @@ public class TileFusionStation extends TileEntity implements IInventory {
     }
 
     private ItemStack[] inventoryContents = new ItemStack[9];
+    public static final String publicName = "tileFusionStation";
+
+    public void ejectItem (int index) {
+        if (getStackInSlot(index) != null) {
+            ItemStack ejectedItem = new ItemStack(getStackInSlot(index).getItem());
+            worldObj.spawnEntityInWorld(new EntityItem(worldObj,
+                    pos.getX(), pos.getY(), pos.getZ(), ejectedItem));
+            setInventorySlotContents(index, null);
+        }
+    }
 
     public ItemStack setSocketContents(int index, EntityPlayer playerIn) {
         if (index != 4) {
             ItemStack heldItem = playerIn.getHeldItem();
-            if (this.isItemValidForSlot(index, heldItem)) {
-                if (this.getStackInSlot(index) == null) {
-                    this.setInventorySlotContents(index, heldItem);
+                if (getStackInSlot(index) == null) {
+                    if (isItemValidForSlot(index, heldItem)) {
+                        setInventorySlotContents(index, heldItem);
+                        --heldItem.stackSize;
+                    }
                     return null;
                 } else {
-                    getStackInSlotOnClosing(index);
-                    this.setInventorySlotContents(index, heldItem);
+                    ejectItem(index);
+                    if (isItemValidForSlot(index, heldItem)) {
+                        setInventorySlotContents(index, heldItem);
+                        --heldItem.stackSize;
+                    }
                 }
-            }
 
         } else {
             getStackInSlotOnClosing(index);
@@ -40,8 +55,8 @@ public class TileFusionStation extends TileEntity implements IInventory {
 
     @Override
     public ItemStack getStackInSlot(int index) {
-        if (index >= 0 && index < this.inventoryContents.length) {
-            return this.inventoryContents[index];
+        if (index >= 0 && index < inventoryContents.length) {
+            return inventoryContents[index];
         } else { return null;}
     }
 
@@ -52,10 +67,10 @@ public class TileFusionStation extends TileEntity implements IInventory {
 
     @Override
     public ItemStack getStackInSlotOnClosing(int index) {
-        if (this.inventoryContents[index] != null)
+        if (inventoryContents[index] != null)
         {
-            ItemStack itemstack = this.inventoryContents[index];
-            this.inventoryContents[index] = null;
+            ItemStack itemstack = inventoryContents[index];
+            inventoryContents[index] = null;
             return itemstack;
         }
         else
@@ -66,14 +81,15 @@ public class TileFusionStation extends TileEntity implements IInventory {
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
-        this.inventoryContents[index] = stack;
+        inventoryContents[index] = stack;
 
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
+
+        if (inventoryContents[index] != null && inventoryContents[index].stackSize > getInventoryStackLimit())
         {
-            stack.stackSize = this.getInventoryStackLimit();
+            inventoryContents[index].stackSize = getInventoryStackLimit();
         }
 
-        this.markDirty();
+        markDirty();
     }
 
     @Override

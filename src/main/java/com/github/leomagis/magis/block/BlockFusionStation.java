@@ -24,6 +24,20 @@ public class BlockFusionStation extends Block implements ITileEntityProvider {
         setStepSound(soundTypeMetal);
     }
 
+    @Override
+    public boolean isFullCube() {
+        return false;
+    }
+
+    @Override
+    public boolean isVisuallyOpaque() {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
@@ -34,49 +48,52 @@ public class BlockFusionStation extends Block implements ITileEntityProvider {
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
         TileFusionStation fusionStation = (TileFusionStation) worldIn.getTileEntity(pos);
         if (side == EnumFacing.UP) {
-            if ((hitX >= 0) && (hitX <= 0.33)) {
-                if ((hitZ >= 0) && (hitZ <= 0.33)) {
-                    int index = 0;
-                    fusionStation.setSocketContents(index, playerIn);
-                    return true;
-                } else if ((hitZ > 0.33) && (hitZ <= 0.66)) {
-                    int index = 1;
-                    fusionStation.setSocketContents(index, playerIn);
-                    return true;
-                } else if ((hitZ > 0.66) && (hitZ <= 1)) {
-                    int index = 2;
-                    fusionStation.setSocketContents(index, playerIn);
-                    return true;
-                }
-            } else if ((hitX > 0.33) && (hitX <= 0.66)) {
-                if ((hitZ >= 0) && (hitZ <= 0.33)) {
-                    int index = 3;
-                    fusionStation.setSocketContents(index, playerIn);
-                    return true;
-                } else if ((hitZ > 0.33) && (hitZ <= 0.66)) {
-                    int index = 4;
-                    fusionStation.setSocketContents(index, playerIn);
-                    return true;
-                } else if ((hitZ > 0.66) && (hitZ <= 1)) {
-                    int index = 5;
-                    fusionStation.setSocketContents(index, playerIn);
-                    return true;
-                }
-            } else if ((hitX > 0.66) && (hitX <= 1)) {
-                if ((hitZ >= 0) && (hitZ <= 0.33)) {
-                    int index = 6;
-                    fusionStation.setSocketContents(index, playerIn);
-                    return true;
-                } else if ((hitZ > 0.33) && (hitZ <= 0.66)) {
-                    int index = 7;
-                    fusionStation.setSocketContents(index, playerIn);
-                    return true;
-                } else if ((hitZ > 0.66) && (hitZ <= 1)) {
-                    int index = 8;
-                    fusionStation.setSocketContents(index, playerIn);
-                    return true;
+            if (!worldIn.isRemote) {
+                if ((hitX >= 0) && (hitX <= 0.33)) {
+                    if ((hitZ >= 0) && (hitZ <= 0.33)) {
+                        int index = 0;
+                        fusionStation.setSocketContents(index, playerIn);
+                        return true;
+                    } else if ((hitZ > 0.33) && (hitZ <= 0.66)) {
+                        int index = 1;
+                        fusionStation.setSocketContents(index, playerIn);
+                        return true;
+                    } else if ((hitZ > 0.66) && (hitZ <= 1)) {
+                        int index = 2;
+                        fusionStation.setSocketContents(index, playerIn);
+                        return true;
+                    }
+                } else if ((hitX > 0.33) && (hitX <= 0.66)) {
+                    if ((hitZ >= 0) && (hitZ <= 0.33)) {
+                        int index = 3;
+                        fusionStation.setSocketContents(index, playerIn);
+                        return true;
+                    } else if ((hitZ > 0.33) && (hitZ <= 0.66)) {
+                        int index = 4;
+                        fusionStation.setSocketContents(index, playerIn);
+                        return true;
+                    } else if ((hitZ > 0.66) && (hitZ <= 1)) {
+                        int index = 5;
+                        fusionStation.setSocketContents(index, playerIn);
+                        return true;
+                    }
+                } else if ((hitX > 0.66) && (hitX <= 1)) {
+                    if ((hitZ >= 0) && (hitZ <= 0.33)) {
+                        int index = 6;
+                        fusionStation.setSocketContents(index, playerIn);
+                        return true;
+                    } else if ((hitZ > 0.33) && (hitZ <= 0.66)) {
+                        int index = 7;
+                        fusionStation.setSocketContents(index, playerIn);
+                        return true;
+                    } else if ((hitZ > 0.66) && (hitZ <= 1)) {
+                        int index = 8;
+                        fusionStation.setSocketContents(index, playerIn);
+                        return true;
+                    }
                 }
             }
-        } return false;
+        }
+        return false;
     }
 }

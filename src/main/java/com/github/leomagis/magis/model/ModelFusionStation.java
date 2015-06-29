@@ -65,8 +65,8 @@ public class ModelFusionStation extends ModelBase
       Plate1.setTextureSize(128, 128);
       Plate1.mirror = true;
       setRotation(Plate1, 0F, 0F, 0F);
-      Plate2.mirror = true;
       Plate2 = new ModelRenderer(this, 34, 8);
+      Plate2.mirror = true;
       Plate2.addBox(0F, 0F, 0F, 6, 1, 6);
       Plate2.setRotationPoint(8F, 22F, -2F);
       Plate2.setTextureSize(128, 128);
@@ -79,8 +79,8 @@ public class ModelFusionStation extends ModelBase
       Plate3.setTextureSize(128, 128);
       Plate3.mirror = true;
       setRotation(Plate3, 0F, 3.141593F, 0F);
-      Plate4.mirror = true;
       Plate4 = new ModelRenderer(this, 34, 8);
+      Plate4.mirror = true;
       Plate4.addBox(0F, 0F, 0F, 6, 1, 6);
       Plate4.setRotationPoint(-8F, 22F, 2F);
       Plate4.setTextureSize(128, 128);
