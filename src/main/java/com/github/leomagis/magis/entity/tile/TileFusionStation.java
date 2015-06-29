@@ -5,6 +5,8 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IChatComponent;
 
@@ -144,4 +146,40 @@ public class TileFusionStation extends TileEntity implements IInventory {
     public IChatComponent getDisplayName() {
         return null;
     }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tagCompound) {
+        super.writeToNBT(tagCompound);
+
+        NBTTagList itemsList = new NBTTagList();
+        for(int i=0;i<inventoryContents.length;++i) {
+            ItemStack itemStack = inventoryContents[i];
+            if(itemStack == null) {continue;}
+
+            NBTTagCompound itemCompound = new NBTTagCompound();
+            itemStack.writeToNBT(itemCompound);
+            itemCompound.setInteger("slot", i);
+            itemsList.appendTag(itemCompound);
+        }
+        tagCompound.setTag("items", itemsList);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tagCompound) {
+        super.readFromNBT(tagCompound);
+
+        // see NBTBase.NBT_TYPES
+        NBTTagList itemsList = tagCompound.getTagList("items", 10);
+
+        int numTags = itemsList.tagCount();
+        for(int i=0;i<numTags;++i) {
+            NBTTagCompound itemCompound = itemsList.getCompoundTagAt(i);
+
+            int slot = itemCompound.getInteger("slot");
+            if(slot < 0 || slot >= inventoryContents.length) {continue;}
+
+            inventoryContents[slot] = ItemStack.loadItemStackFromNBT(itemCompound);
+        }
+    }
+
 }
