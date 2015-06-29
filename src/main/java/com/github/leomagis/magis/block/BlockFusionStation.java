@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -80,5 +81,19 @@ public class BlockFusionStation extends Block implements ITileEntityProvider {
 
         playerIn.setCurrentItemOrArmor(0, heldItem);
         return true;
+    }
+
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        TileFusionStation tileEntity = (TileFusionStation) worldIn.getTileEntity(pos);
+
+        int inventorySize = tileEntity.getSizeInventory();
+        for(int i=0;i<inventorySize;++i) {
+            ItemStack itemStack = tileEntity.getStackInSlotOnClosing(i);
+            if(itemStack == null) {continue;}
+
+            worldIn.spawnEntityInWorld(new EntityItem(worldIn,
+                            pos.getX(), pos.getY(), pos.getZ(), itemStack));
+        }
     }
 }
