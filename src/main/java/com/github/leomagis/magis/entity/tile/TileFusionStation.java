@@ -94,7 +94,7 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
             if(recipeTicksRemaining == 0) {
                 worldObj.spawnEntityInWorld(new EntityItem(worldObj,
                                 pos.getX()+0.5, pos.getY()+1.0, pos.getZ()+0.5,
-                                currentRecipeResult));
+                                ItemStack.copyItemStack(currentRecipeResult)));
                 currentRecipeResult = null;
                 clear();
             }
