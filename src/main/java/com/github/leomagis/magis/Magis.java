@@ -2,6 +2,7 @@ package com.github.leomagis.magis;
 
 import com.github.leomagis.magis.block.BlockEvercrystal;
 import com.github.leomagis.magis.block.BlockFusionStation;
+import com.github.leomagis.magis.entity.tile.TileFusionStation;
 import com.github.leomagis.magis.item.ItemCrystalShard;
 import com.github.leomagis.magis.item.ItemElementalCompound;
 import com.github.leomagis.magis.proxy.CommonProxy;
@@ -61,6 +62,9 @@ public class Magis {
         GameRegistry.registerBlock(evercrystal, "blockEvercrystal");
         GameRegistry.registerBlock(fusionStation, "blockFusionStation");
 
+        //Tile Entity registration
+        GameRegistry.registerTileEntity(TileFusionStation.class, "tileFusionStation");
+
         //Item Initialization
         crystalShard = new ItemCrystalShard();
         elementalCompound = new ItemElementalCompound();
@@ -102,8 +106,6 @@ public class Magis {
     @SuppressWarnings("unused")
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-
         proxy.registerRenderers();
-        proxy.registerTileEntities();
     }
 }

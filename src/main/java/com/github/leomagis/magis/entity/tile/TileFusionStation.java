@@ -10,42 +10,28 @@ import net.minecraft.util.IChatComponent;
 
 public class TileFusionStation extends TileEntity implements IInventory {
 
-    public TileFusionStation() {
-        super();
-    }
-
     private ItemStack[] inventoryContents = new ItemStack[9];
-    public static final String publicName = "tileFusionStation";
 
-    public void ejectItem (int index) {
-        if (getStackInSlot(index) != null) {
-            ItemStack ejectedItem = new ItemStack(getStackInSlot(index).getItem());
-            worldObj.spawnEntityInWorld(new EntityItem(worldObj,
-                    pos.getX(), pos.getY(), pos.getZ(), ejectedItem));
-            setInventorySlotContents(index, null);
-        }
+    public void ejectItem(int index) {
+        ItemStack stackInSlot = getStackInSlotOnClosing(index);
+        if(stackInSlot == null) {return;}
+
+        worldObj.spawnEntityInWorld(new EntityItem(worldObj,
+                        pos.getX(), pos.getY(), pos.getZ(), stackInSlot));
     }
 
-    public ItemStack setSocketContents(int index, EntityPlayer playerIn) {
-        if (index != 4) {
-            ItemStack heldItem = playerIn.getHeldItem();
-                if (getStackInSlot(index) == null) {
-                    if (isItemValidForSlot(index, heldItem)) {
-                        setInventorySlotContents(index, heldItem);
-                        --heldItem.stackSize;
-                    }
-                    return null;
-                } else {
-                    ejectItem(index);
-                    if (isItemValidForSlot(index, heldItem)) {
-                        setInventorySlotContents(index, heldItem);
-                        --heldItem.stackSize;
-                    }
-                }
+    public void setSocketContents(int index, ItemStack itemStack) {
+        // items cannot be inserted into the 4th slot
+        if(index == 4) {
+            ejectItem(4);
+            return;
+        }
 
-        } else {
-            getStackInSlotOnClosing(index);
-        } return null;
+        if(!isItemValidForSlot(index, itemStack)) {return;}
+
+        if(getStackInSlot(index) != null) {ejectItem(index);}
+
+        setInventorySlotContents(index, itemStack);
     }
 
     @Override
@@ -55,40 +41,45 @@ public class TileFusionStation extends TileEntity implements IInventory {
 
     @Override
     public ItemStack getStackInSlot(int index) {
-        if (index >= 0 && index < inventoryContents.length) {
+        if(index >= 0 && index < inventoryContents.length) {
             return inventoryContents[index];
-        } else { return null;}
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count) {
+        }
         return null;
     }
 
     @Override
+    public ItemStack decrStackSize(int index, int count) {
+        ItemStack stackInSlot = getStackInSlot(index);
+        if(stackInSlot == null) {return null;}
+
+        if(stackInSlot.stackSize <= count) {
+            setInventorySlotContents(index, null);
+            return stackInSlot;
+        }
+
+        stackInSlot.stackSize -= count;
+        return new ItemStack(stackInSlot.getItem(), count, stackInSlot.getItemDamage());
+    }
+
+    @Override
     public ItemStack getStackInSlotOnClosing(int index) {
-        if (inventoryContents[index] != null)
-        {
-            ItemStack itemstack = inventoryContents[index];
-            inventoryContents[index] = null;
-            return itemstack;
+        ItemStack stackInSlot = getStackInSlot(index);
+        if(stackInSlot != null) {
+            setInventorySlotContents(index, null);
+            return stackInSlot;
         }
-        else
-        {
-            return null;
-        }
+
+        return null;
     }
 
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
+        if(index < 0 || index >= inventoryContents.length) {return;}
+
+        int stackLimit = getInventoryStackLimit();
+        if(stack.stackSize > stackLimit) {stack.stackSize = stackLimit;}
+
         inventoryContents[index] = stack;
-
-
-        if (inventoryContents[index] != null && inventoryContents[index].stackSize > getInventoryStackLimit())
-        {
-            inventoryContents[index].stackSize = getInventoryStackLimit();
-        }
-
         markDirty();
     }
 
@@ -103,20 +94,14 @@ public class TileFusionStation extends TileEntity implements IInventory {
     }
 
     @Override
-    public void openInventory(EntityPlayer playerIn) {
-
-    }
+    public void openInventory(EntityPlayer playerIn) {}
 
     @Override
-    public void closeInventory(EntityPlayer playerIn) {
-
-    }
+    public void closeInventory(EntityPlayer playerIn) {}
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-        if (stack != null) {
-            return stack.getItem() == Magis.elementalCompound;
-        }  return false;
+        return stack != null && stack.getItem() == Magis.elementalCompound;
     }
 
     @Override
@@ -125,9 +110,7 @@ public class TileFusionStation extends TileEntity implements IInventory {
     }
 
     @Override
-    public void setField(int id, int value) {
-
-    }
+    public void setField(int id, int value) {}
 
     @Override
     public int getFieldCount() {
@@ -136,7 +119,9 @@ public class TileFusionStation extends TileEntity implements IInventory {
 
     @Override
     public void clear() {
-
+        for(int i=0;i<inventoryContents.length;++i) {
+            inventoryContents[i] = null;
+        }
     }
 
     @Override
