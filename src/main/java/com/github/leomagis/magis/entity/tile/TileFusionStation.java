@@ -33,13 +33,20 @@ public class TileFusionStation extends TileEntity implements IInventory {
 
         if(getStackInSlot(index) != null) {ejectItem(index);}
 
-        int originalSize = itemStack.stackSize;
-        setInventorySlotContents(index, itemStack);
+        if(itemStack != null) {
+            int originalSize = itemStack.stackSize;
+            setInventorySlotContents(index, itemStack);
 
-        int stackLimit = getInventoryStackLimit();
-        if(originalSize <= stackLimit) {return null;}
+            int stackLimit = getInventoryStackLimit();
+            if(originalSize > stackLimit) {
+                return new ItemStack(
+                        itemStack.getItem(),
+                        originalSize - stackLimit,
+                        itemStack.getItemDamage());
+            }
+        }
 
-        return new ItemStack(itemStack.getItem(), originalSize-stackLimit, itemStack.getItemDamage());
+        return null;
     }
 
     @Override
