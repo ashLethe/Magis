@@ -107,13 +107,13 @@ public class Magis {
         //Magis recipe registration
         FusionRecipeRegistry.registerRecipe(
                 new ItemStack(crystalShard),
-                new ItemStack(elementalCompound, 1, EnumCompoundType.YIN.ordinal()),
+                new ItemStack(elementalCompound, 1, EnumCompoundType.YAN.ordinal()),
                 new ItemStack(elementalCompound, 1, EnumCompoundType.AURA.ordinal()),
                 new ItemStack(elementalCompound, 1, EnumCompoundType.AQUIS.ordinal()),
                 new ItemStack(elementalCompound, 1, EnumCompoundType.ELIQUIS.ordinal()),
                 new ItemStack(elementalCompound, 1, EnumCompoundType.FIIRUS.ordinal()),
                 new ItemStack(elementalCompound, 1, EnumCompoundType.EARTHA.ordinal()),
-                new ItemStack(elementalCompound, 1, EnumCompoundType.YAN.ordinal()),
+                new ItemStack(elementalCompound, 1, EnumCompoundType.YIN.ordinal()),
                 new ItemStack(elementalCompound, 1, EnumCompoundType.CHRONUS.ordinal()),
                 new ItemStack(elementalCompound, 1, EnumCompoundType.PSYCOS.ordinal()));
     }

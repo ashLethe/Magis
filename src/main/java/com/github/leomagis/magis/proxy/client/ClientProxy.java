@@ -10,7 +10,6 @@ import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ClientProxy extends CommonProxy {
 
@@ -118,22 +117,22 @@ public class ClientProxy extends CommonProxy {
                 EnumCompoundType.SOLID.ordinal(),
                 new ModelResourceLocation("magis:itemCompoundEartha", "inventory"));
         modelRegistry.register(Magis.elementalCompound,
-                EnumCompoundType.LIFE.ordinal(),
-                new ModelResourceLocation("magis:itemCompoundYin", "inventory"));
-        modelRegistry.register(Magis.elementalCompound,
-                EnumCompoundType.POSITIVE.ordinal(),
-                new ModelResourceLocation("magis:itemCompoundYin", "inventory"));
-        modelRegistry.register(Magis.elementalCompound,
-                EnumCompoundType.ORDER.ordinal(),
-                new ModelResourceLocation("magis:itemCompoundYin", "inventory"));
-        modelRegistry.register(Magis.elementalCompound,
                 EnumCompoundType.DEATH.ordinal(),
-                new ModelResourceLocation("magis:itemCompoundYan", "inventory"));
+                new ModelResourceLocation("magis:itemCompoundYin", "inventory"));
         modelRegistry.register(Magis.elementalCompound,
                 EnumCompoundType.NEGATIVE.ordinal(),
-                new ModelResourceLocation("magis:itemCompoundYan", "inventory"));
+                new ModelResourceLocation("magis:itemCompoundYin", "inventory"));
         modelRegistry.register(Magis.elementalCompound,
                 EnumCompoundType.CHAOTIC.ordinal(),
+                new ModelResourceLocation("magis:itemCompoundYin", "inventory"));
+        modelRegistry.register(Magis.elementalCompound,
+                EnumCompoundType.LIFE.ordinal(),
+                new ModelResourceLocation("magis:itemCompoundYan", "inventory"));
+        modelRegistry.register(Magis.elementalCompound,
+                EnumCompoundType.POSITIVE.ordinal(),
+                new ModelResourceLocation("magis:itemCompoundYan", "inventory"));
+        modelRegistry.register(Magis.elementalCompound,
+                EnumCompoundType.ORDER.ordinal(),
                 new ModelResourceLocation("magis:itemCompoundYan", "inventory"));
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileFusionStation.class, new RenderFusionStation());

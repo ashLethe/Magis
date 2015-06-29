@@ -41,12 +41,12 @@ item.itemCompoundEarthaEarth.name=Eartha Earth Compound
 item.itemCompoundEarthaMetal.name=Eartha Metal Compound
 item.itemCompoundEarthaSolid.name=Eartha Solidity Compound
 
-item.itemCompoundYinLife.name=Yin Life Compound
-item.itemCompoundYinPositive.name=Yin Positive Compound
-item.itemCompoundYinOrder.name=Yin Order Compound
+item.itemCompoundYinDeath.name=Yin Death Compound
+item.itemCompoundYinNegative.name=Yin Negative Compound
+item.itemCompoundYinChaos.name=Yin Chaos Compound
 
-item.itemCompoundYanDeath.name=Yan Death Compound
-item.itemCompoundYanNegative.name=Yan Negative Compound
-item.itemCompoundYanChaos.name=Yan Chaos Compound
+item.itemCompoundYanLife.name=Yan Life Compound
+item.itemCompoundYanPositive.name=Yan Positive Compound
+item.itemCompoundYanOrder.name=Yan Order Compound
 
 itemGroup.tabMagis=Magis

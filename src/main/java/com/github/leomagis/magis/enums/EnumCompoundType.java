@@ -32,15 +32,15 @@ public enum EnumCompoundType {
     EARTHA_RUNE  ("EarthaRune"),
 
     YIN       ("Yin"),
-    LIFE      ("YinLife"),
-    POSITIVE  ("YinPositive"),
-    ORDER     ("YinOrder"),
+    DEATH     ("YinDeath"),
+    NEGATIVE  ("YinNegative"),
+    CHAOTIC   ("YinChaos"),
     YIN_RUNE  ("YinRune"),
 
     YAN       ("Yan"),
-    DEATH     ("YanDeath"),
-    NEGATIVE  ("YanNegative"),
-    CHAOTIC   ("YanChaos"),
+    LIFE      ("YanLife"),
+    POSITIVE  ("YanPositive"),
+    ORDER     ("YanOrder"),
     YAN_RUNE  ("YanRune"),
 
     CHRONUS   ("Chronus"),
