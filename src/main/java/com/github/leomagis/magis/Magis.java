@@ -3,9 +3,11 @@ package com.github.leomagis.magis;
 import com.github.leomagis.magis.block.BlockEvercrystal;
 import com.github.leomagis.magis.block.BlockFusionStation;
 import com.github.leomagis.magis.entity.tile.TileFusionStation;
+import com.github.leomagis.magis.enums.EnumCompoundType;
 import com.github.leomagis.magis.item.ItemCrystalShard;
 import com.github.leomagis.magis.item.ItemElementalCompound;
 import com.github.leomagis.magis.proxy.CommonProxy;
+import com.github.leomagis.magis.recipe.FusionRecipeRegistry;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -101,6 +103,19 @@ public class Magis {
                 "SSS",
                 "SSS",
                 'S', stackShard);
+
+        //Magis recipe registration
+        FusionRecipeRegistry.registerRecipe(
+                new ItemStack(crystalShard),
+                new ItemStack(elementalCompound, 1, EnumCompoundType.YIN.ordinal()),
+                new ItemStack(elementalCompound, 1, EnumCompoundType.AURA.ordinal()),
+                new ItemStack(elementalCompound, 1, EnumCompoundType.AQUIS.ordinal()),
+                new ItemStack(elementalCompound, 1, EnumCompoundType.ELIQUIS.ordinal()),
+                new ItemStack(elementalCompound, 1, EnumCompoundType.FIIRUS.ordinal()),
+                new ItemStack(elementalCompound, 1, EnumCompoundType.EARTHA.ordinal()),
+                new ItemStack(elementalCompound, 1, EnumCompoundType.YAN.ordinal()),
+                new ItemStack(elementalCompound, 1, EnumCompoundType.CHRONUS.ordinal()),
+                new ItemStack(elementalCompound, 1, EnumCompoundType.PSYCOS.ordinal()));
     }
 
     @SuppressWarnings("unused")

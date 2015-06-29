@@ -2,6 +2,7 @@ package com.github.leomagis.magis.block;
 
 import com.github.leomagis.magis.Magis;
 import com.github.leomagis.magis.entity.tile.TileFusionStation;
+import com.github.leomagis.magis.entity.tile.client.TileFusionStationClient;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -43,6 +44,9 @@ public class BlockFusionStation extends Block implements ITileEntityProvider {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
+        if(worldIn.isRemote) {
+            return new TileFusionStationClient();
+        }
         return new TileFusionStation();
     }
 

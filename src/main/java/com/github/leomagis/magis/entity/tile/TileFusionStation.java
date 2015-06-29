@@ -1,16 +1,27 @@
 package com.github.leomagis.magis.entity.tile;
 
 import com.github.leomagis.magis.Magis;
+import com.github.leomagis.magis.recipe.FusionRecipeRegistry;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IChatComponent;
 
-public class TileFusionStation extends TileEntity implements IInventory {
+import java.util.ArrayList;
+import java.util.List;
+
+public class TileFusionStation extends TileEntity implements IInventory, IUpdatePlayerListBox {
+
+    private int recipeTicksRemaining = 0;
+
+    private ItemStack currentRecipeResult;
 
     private ItemStack[] inventoryContents = new ItemStack[9];
 
@@ -18,35 +29,76 @@ public class TileFusionStation extends TileEntity implements IInventory {
         ItemStack stackInSlot = getStackInSlotOnClosing(index);
         if(stackInSlot == null) {return;}
 
+        if(recipeTicksRemaining > 0) {
+            recipeTicksRemaining = 0;
+            currentRecipeResult = null;
+            worldObj.markBlockForUpdate(pos);
+        }
+
         worldObj.spawnEntityInWorld(new EntityItem(worldObj,
-                        pos.getX(), pos.getY(), pos.getZ(), stackInSlot));
+                        pos.getX()+0.5, pos.getY()+1.0, pos.getZ()+0.5,
+                        stackInSlot));
     }
 
     public ItemStack setSocketContents(int index, ItemStack itemStack) {
-        // items cannot be inserted into the 4th slot
-        if(index == 4) {
-            ejectItem(4);
-            return itemStack;
-        }
-
         if(!isItemValidForSlot(index, itemStack)) {return itemStack;}
 
         if(getStackInSlot(index) != null) {ejectItem(index);}
 
+        ItemStack returnStack = null;
         if(itemStack != null) {
             int originalSize = itemStack.stackSize;
             setInventorySlotContents(index, itemStack);
 
             int stackLimit = getInventoryStackLimit();
             if(originalSize > stackLimit) {
-                return new ItemStack(
+                returnStack = new ItemStack(
                         itemStack.getItem(),
                         originalSize - stackLimit,
                         itemStack.getItemDamage());
             }
         }
 
-        return null;
+        if(index == 4) {performRecipe();}
+
+        return returnStack;
+    }
+
+    private void performRecipe() {
+        ItemStack centerStack = inventoryContents[4];
+
+        List<ItemStack> otherStacksList = new ArrayList<ItemStack>(8);
+        for(int i=0;i<inventoryContents.length;++i) {
+            if(i == 4) {continue;}
+
+            ItemStack itemStack = inventoryContents[i];
+            if(itemStack == null) {continue;}
+
+            otherStacksList.add(itemStack);
+        }
+        ItemStack[] otherStacks = new ItemStack[otherStacksList.size()];
+        otherStacksList.toArray(otherStacks);
+
+        currentRecipeResult = FusionRecipeRegistry.getRecipeResult(centerStack, otherStacks);
+        if(currentRecipeResult == null) {return;}
+
+        recipeTicksRemaining = 100;
+        worldObj.markBlockForUpdate(pos);
+    }
+
+    @Override
+    public void update() {
+        if(recipeTicksRemaining > 0) {
+            --recipeTicksRemaining;
+
+            if(recipeTicksRemaining == 0) {
+                worldObj.spawnEntityInWorld(new EntityItem(worldObj,
+                                pos.getX()+0.5, pos.getY()+1.0, pos.getZ()+0.5,
+                                currentRecipeResult));
+                currentRecipeResult = null;
+                clear();
+            }
+        }
     }
 
     @Override
@@ -155,8 +207,24 @@ public class TileFusionStation extends TileEntity implements IInventory {
     }
 
     @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tagCompound = new NBTTagCompound();
+        tagCompound.setInteger("recipeTicksRemaining", recipeTicksRemaining);
+
+        return new S35PacketUpdateTileEntity(pos, 0, tagCompound);
+    }
+
+    @Override
     public void writeToNBT(NBTTagCompound tagCompound) {
         super.writeToNBT(tagCompound);
+
+        tagCompound.setInteger("recipeTicksRemaining", recipeTicksRemaining);
+
+        if(currentRecipeResult != null) {
+            NBTTagCompound recipeResult = new NBTTagCompound();
+            currentRecipeResult.writeToNBT(recipeResult);
+            tagCompound.setTag("currentRecipeResult", recipeResult);
+        }
 
         NBTTagList itemsList = new NBTTagList();
         for(int i=0;i<inventoryContents.length;++i) {
@@ -174,6 +242,13 @@ public class TileFusionStation extends TileEntity implements IInventory {
     @Override
     public void readFromNBT(NBTTagCompound tagCompound) {
         super.readFromNBT(tagCompound);
+
+        recipeTicksRemaining = tagCompound.getInteger("recipeTicksRemaining");
+
+        NBTTagCompound recipeResult = tagCompound.getCompoundTag("currentRecipeResult");
+        if(!recipeResult.hasNoTags()) {
+            currentRecipeResult = ItemStack.loadItemStackFromNBT(recipeResult);
+        }
 
         // see NBTBase.NBT_TYPES
         NBTTagList itemsList = tagCompound.getTagList("items", 10);
