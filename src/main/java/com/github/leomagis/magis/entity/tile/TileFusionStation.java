@@ -83,7 +83,7 @@ public class TileFusionStation extends TileEntity implements IInventory {
         if(index < 0 || index >= inventoryContents.length) {return;}
 
         int stackLimit = getInventoryStackLimit();
-        if(stack.stackSize > stackLimit) {stack.stackSize = stackLimit;}
+        if(stack != null && stack.stackSize > stackLimit) {stack.stackSize = stackLimit;}
 
         inventoryContents[index] = stack;
         markDirty();
@@ -107,7 +107,7 @@ public class TileFusionStation extends TileEntity implements IInventory {
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-        return stack != null && stack.getItem() == Magis.elementalCompound;
+        return stack == null || stack.getItem() == Magis.elementalCompound;
     }
 
     @Override

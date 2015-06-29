@@ -78,6 +78,7 @@ public class BlockFusionStation extends Block implements ITileEntityProvider {
             }
         }
 
+        playerIn.setCurrentItemOrArmor(0, heldItem);
         return true;
     }
 }
