@@ -20,18 +20,24 @@ public class TileFusionStation extends TileEntity implements IInventory {
                         pos.getX(), pos.getY(), pos.getZ(), stackInSlot));
     }
 
-    public void setSocketContents(int index, ItemStack itemStack) {
+    public ItemStack setSocketContents(int index, ItemStack itemStack) {
         // items cannot be inserted into the 4th slot
         if(index == 4) {
             ejectItem(4);
-            return;
+            return itemStack;
         }
 
-        if(!isItemValidForSlot(index, itemStack)) {return;}
+        if(!isItemValidForSlot(index, itemStack)) {return itemStack;}
 
         if(getStackInSlot(index) != null) {ejectItem(index);}
 
+        int originalSize = itemStack.stackSize;
         setInventorySlotContents(index, itemStack);
+
+        int stackLimit = getInventoryStackLimit();
+        if(originalSize <= stackLimit) {return null;}
+
+        return new ItemStack(itemStack.getItem(), originalSize-stackLimit, itemStack.getItemDamage());
     }
 
     @Override

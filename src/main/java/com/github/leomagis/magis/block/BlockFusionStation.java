@@ -7,6 +7,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
@@ -49,30 +50,31 @@ public class BlockFusionStation extends Block implements ITileEntityProvider {
         if(side != EnumFacing.UP) {return false;}
         if(worldIn.isRemote) {return true;}
 
+        ItemStack heldItem = playerIn.getHeldItem();
         TileFusionStation fusionStation = (TileFusionStation) worldIn.getTileEntity(pos);
         if(hitX <= 0.33) {
             if(hitZ <= 0.33) {
-                fusionStation.setSocketContents(0, playerIn);
+                heldItem = fusionStation.setSocketContents(0, heldItem);
             } else if(hitZ <= 0.66) {
-                fusionStation.setSocketContents(1, playerIn);
+                heldItem = fusionStation.setSocketContents(1, heldItem);
             } else {
-                fusionStation.setSocketContents(2, playerIn);
+                heldItem = fusionStation.setSocketContents(2, heldItem);
             }
         } else if(hitX <= 0.66) {
             if(hitZ <= 0.33) {
-                fusionStation.setSocketContents(3, playerIn);
+                heldItem = fusionStation.setSocketContents(3, heldItem);
             } else if(hitZ <= 0.66) {
-                fusionStation.setSocketContents(4, playerIn);
+                heldItem = fusionStation.setSocketContents(4, heldItem);
             } else {
-                fusionStation.setSocketContents(5, playerIn);
+                heldItem = fusionStation.setSocketContents(5, heldItem);
             }
         } else {
             if(hitZ <= 0.33) {
-                fusionStation.setSocketContents(6, playerIn);
+                heldItem = fusionStation.setSocketContents(6, heldItem);
             } else if(hitZ <= 0.66) {
-                fusionStation.setSocketContents(7, playerIn);
+                heldItem = fusionStation.setSocketContents(7, heldItem);
             } else {
-                fusionStation.setSocketContents(8, playerIn);
+                heldItem = fusionStation.setSocketContents(8, heldItem);
             }
         }
 
