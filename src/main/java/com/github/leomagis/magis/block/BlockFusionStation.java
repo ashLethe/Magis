@@ -46,54 +46,36 @@ public class BlockFusionStation extends Block implements ITileEntityProvider {
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) {
+        if(side != EnumFacing.UP) {return false;}
+        if(worldIn.isRemote) {return true;}
+
         TileFusionStation fusionStation = (TileFusionStation) worldIn.getTileEntity(pos);
-        if (side == EnumFacing.UP) {
-            if (!worldIn.isRemote) {
-                if ((hitX >= 0) && (hitX <= 0.33)) {
-                    if ((hitZ >= 0) && (hitZ <= 0.33)) {
-                        int index = 0;
-                        fusionStation.setSocketContents(index, playerIn);
-                        return true;
-                    } else if ((hitZ > 0.33) && (hitZ <= 0.66)) {
-                        int index = 1;
-                        fusionStation.setSocketContents(index, playerIn);
-                        return true;
-                    } else if ((hitZ > 0.66) && (hitZ <= 1)) {
-                        int index = 2;
-                        fusionStation.setSocketContents(index, playerIn);
-                        return true;
-                    }
-                } else if ((hitX > 0.33) && (hitX <= 0.66)) {
-                    if ((hitZ >= 0) && (hitZ <= 0.33)) {
-                        int index = 3;
-                        fusionStation.setSocketContents(index, playerIn);
-                        return true;
-                    } else if ((hitZ > 0.33) && (hitZ <= 0.66)) {
-                        int index = 4;
-                        fusionStation.setSocketContents(index, playerIn);
-                        return true;
-                    } else if ((hitZ > 0.66) && (hitZ <= 1)) {
-                        int index = 5;
-                        fusionStation.setSocketContents(index, playerIn);
-                        return true;
-                    }
-                } else if ((hitX > 0.66) && (hitX <= 1)) {
-                    if ((hitZ >= 0) && (hitZ <= 0.33)) {
-                        int index = 6;
-                        fusionStation.setSocketContents(index, playerIn);
-                        return true;
-                    } else if ((hitZ > 0.33) && (hitZ <= 0.66)) {
-                        int index = 7;
-                        fusionStation.setSocketContents(index, playerIn);
-                        return true;
-                    } else if ((hitZ > 0.66) && (hitZ <= 1)) {
-                        int index = 8;
-                        fusionStation.setSocketContents(index, playerIn);
-                        return true;
-                    }
-                }
+        if(hitX <= 0.33) {
+            if(hitZ <= 0.33) {
+                fusionStation.setSocketContents(0, playerIn);
+            } else if(hitZ <= 0.66) {
+                fusionStation.setSocketContents(1, playerIn);
+            } else {
+                fusionStation.setSocketContents(2, playerIn);
+            }
+        } else if(hitX <= 0.66) {
+            if(hitZ <= 0.33) {
+                fusionStation.setSocketContents(3, playerIn);
+            } else if(hitZ <= 0.66) {
+                fusionStation.setSocketContents(4, playerIn);
+            } else {
+                fusionStation.setSocketContents(5, playerIn);
+            }
+        } else {
+            if(hitZ <= 0.33) {
+                fusionStation.setSocketContents(6, playerIn);
+            } else if(hitZ <= 0.66) {
+                fusionStation.setSocketContents(7, playerIn);
+            } else {
+                fusionStation.setSocketContents(8, playerIn);
             }
         }
-        return false;
+
+        return true;
     }
 }
