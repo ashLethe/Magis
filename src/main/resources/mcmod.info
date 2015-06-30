@@ -1,8 +1,8 @@
 [
 {
   "modid": "magis",
-  "name": "Magis Base",
-  "description": "The core for Magis mods.",
+  "name": "Magis",
+  "description": "Elemental magic.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "https://github.com/leoMagis/Magis",

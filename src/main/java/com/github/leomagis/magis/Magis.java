@@ -184,15 +184,15 @@ public class Magis {
 		);
 		FusionRecipeRegistry.registerRecipe(
 				stackYan,
-						stackNegative,
-						stackChaotic,
-						stackDeath
-		);
-		FusionRecipeRegistry.registerRecipe(
-				stackYin,
 						stackPositive,
 						stackLife,
 						stackOrder
+		);
+		FusionRecipeRegistry.registerRecipe(
+				stackYin,
+				stackNegative,
+				stackChaotic,
+				stackDeath
 		);
 	}
 

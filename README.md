@@ -1,1 +1,1 @@
-# Core for Magis mods.
+# Elemental Magic Mod.
