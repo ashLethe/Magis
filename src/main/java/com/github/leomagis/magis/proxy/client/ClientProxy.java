@@ -2,7 +2,7 @@ package com.github.leomagis.magis.proxy.client;
 
 import com.github.leomagis.magis.Magis;
 import com.github.leomagis.magis.entity.renderer.RenderFusionStation;
-import com.github.leomagis.magis.entity.tile.TileFusionStation;
+import com.github.leomagis.magis.entity.tile.client.TileFusionStationClient;
 import com.github.leomagis.magis.enums.EnumCompoundType;
 import com.github.leomagis.magis.proxy.CommonProxy;
 import net.minecraft.client.Minecraft;
@@ -135,6 +135,6 @@ public class ClientProxy extends CommonProxy {
                 EnumCompoundType.ORDER.ordinal(),
                 new ModelResourceLocation("magis:itemCompoundYan", "inventory"));
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileFusionStation.class, new RenderFusionStation());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileFusionStationClient.class, new RenderFusionStation());
     }
 }

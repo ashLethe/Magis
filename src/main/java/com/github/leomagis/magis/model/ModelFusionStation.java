@@ -48,23 +48,23 @@ public class ModelFusionStation extends ModelBase {
         Base.setRotationPoint(-2F, 23F, -8F);
         Base.setTextureSize(128, 128);
         Base.mirror = true;
-        setRotation(Base, 0F, 0F, 0F);
+        //setRotation(Base, 0F, 0F, 0F);
 
         Plate1 = new ModelRenderer(this, 34, 8);
         Plate1.addBox(0F, 0F, 0F, 6, 1, 6);
         Plate1.setRotationPoint(2F, 22F, 2F);
         Plate1.setTextureSize(128, 128);
         Plate1.mirror = true;
-        setRotation(Plate1, 0F, 0F, 0F);
+        //setRotation(Plate1, 0F, 0F, 0F);
 
         Plate2 = new ModelRenderer(this, 34, 8);
         Plate2.mirror = true;
         Plate2.addBox(0F, 0F, 0F, 6, 1, 6);
         Plate2.setRotationPoint(8F, 22F, -2F);
         Plate2.setTextureSize(128, 128);
-        Plate2.mirror = true;
+        //Plate2.mirror = true;
         setRotation(Plate2, 0F, 3.141593F, 0F);
-        Plate2.mirror = false;
+        //Plate2.mirror = false;
 
         Plate3 = new ModelRenderer(this, 34, 8);
         Plate3.addBox(0F, 0F, 0F, 6, 1, 6);
@@ -78,23 +78,23 @@ public class ModelFusionStation extends ModelBase {
         Plate4.addBox(0F, 0F, 0F, 6, 1, 6);
         Plate4.setRotationPoint(-8F, 22F, 2F);
         Plate4.setTextureSize(128, 128);
-        Plate4.mirror = true;
-        setRotation(Plate4, 0F, 0F, 0F);
-        Plate4.mirror = false;
+        //Plate4.mirror = true;
+        //setRotation(Plate4, 0F, 0F, 0F);
+        //Plate4.mirror = false;
 
         Frame1 = new ModelRenderer(this, 0, 31);
         Frame1.addBox(-16F, 0F, 0F, 32, 1, 1);
         Frame1.setRotationPoint(0F, 22F, 15F);
         Frame1.setTextureSize(128, 128);
         Frame1.mirror = true;
-        setRotation(Frame1, 0F, 0F, 0F);
+        //setRotation(Frame1, 0F, 0F, 0F);
 
         Frame2 = new ModelRenderer(this, 0, 31);
         Frame2.addBox(-16F, 0F, 0F, 32, 1, 1);
         Frame2.setRotationPoint(0F, 22F, -16F);
         Frame2.setTextureSize(128, 128);
         Frame2.mirror = true;
-        setRotation(Frame2, 0F, 0F, 0F);
+        //setRotation(Frame2, 0F, 0F, 0F);
 
         Frame3 = new ModelRenderer(this, 0, 31);
         Frame3.addBox(-14F, 0F, 0F, 30, 1, 1);
@@ -143,56 +143,56 @@ public class ModelFusionStation extends ModelBase {
         InFrame5.setRotationPoint(1F, 22F, 10F);
         InFrame5.setTextureSize(128, 128);
         InFrame5.mirror = true;
-        setRotation(InFrame5, 0F, 0F, 0F);
+        //setRotation(InFrame5, 0F, 0F, 0F);
 
         InFrame6 = new ModelRenderer(this, 0, 31);
         InFrame6.addBox(0F, 0F, 0F, 9, 1, 2);
         InFrame6.setRotationPoint(-10F, 22F, 10F);
         InFrame6.setTextureSize(128, 128);
         InFrame6.mirror = true;
-        setRotation(InFrame6, 0F, 0F, 0F);
+        //setRotation(InFrame6, 0F, 0F, 0F);
 
         InFrame7 = new ModelRenderer(this, 0, 31);
         InFrame7.addBox(0F, 0F, 0F, 9, 1, 2);
         InFrame7.setRotationPoint(1F, 22F, -12F);
         InFrame7.setTextureSize(128, 128);
         InFrame7.mirror = true;
-        setRotation(InFrame7, 0F, 0F, 0F);
+        //setRotation(InFrame7, 0F, 0F, 0F);
 
         InFrame8 = new ModelRenderer(this, 0, 31);
         InFrame8.addBox(0F, 0F, 0F, 9, 1, 2);
         InFrame8.setRotationPoint(-10F, 22F, -12F);
         InFrame8.setTextureSize(128, 128);
         InFrame8.mirror = true;
-        setRotation(InFrame8, 0F, 0F, 0F);
+        //setRotation(InFrame8, 0F, 0F, 0F);
 
         InFrame9 = new ModelRenderer(this, 0, 31);
         InFrame9.addBox(0F, 0F, 0F, 3, 1, 2);
         InFrame9.setRotationPoint(-15F, 22F, -3F);
         InFrame9.setTextureSize(128, 128);
         InFrame9.mirror = true;
-        setRotation(InFrame9, 0F, 0F, 0F);
+        //setRotation(InFrame9, 0F, 0F, 0F);
 
         InFrame10 = new ModelRenderer(this, 0, 31);
         InFrame10.addBox(0F, 0F, 0F, 3, 1, 2);
         InFrame10.setRotationPoint(-15F, 22F, 1F);
         InFrame10.setTextureSize(128, 128);
         InFrame10.mirror = true;
-        setRotation(InFrame10, 0F, 0F, 0F);
+        //setRotation(InFrame10, 0F, 0F, 0F);
 
         InFrame11 = new ModelRenderer(this, 0, 31);
         InFrame11.addBox(0F, 0F, 0F, 3, 1, 2);
         InFrame11.setRotationPoint(12F, 22F, 1F);
         InFrame11.setTextureSize(128, 128);
         InFrame11.mirror = true;
-        setRotation(InFrame11, 0F, 0F, 0F);
+        //setRotation(InFrame11, 0F, 0F, 0F);
 
         InFrame12 = new ModelRenderer(this, 0, 31);
         InFrame12.addBox(0F, 0F, 0F, 3, 1, 2);
         InFrame12.setRotationPoint(12F, 22F, -3F);
         InFrame12.setTextureSize(128, 128);
         InFrame12.mirror = true;
-        setRotation(InFrame12, 0F, 0F, 0F);
+        //setRotation(InFrame12, 0F, 0F, 0F);
 
         InFrame13 = new ModelRenderer(this, 0, 31);
         InFrame13.addBox(0F, 0F, 0F, 3, 1, 2);
@@ -251,9 +251,7 @@ public class ModelFusionStation extends ModelBase {
         setRotation(InFrame20, 0F, 1.579523F, 0F);
     }
 
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
-        super.render(entity, f, f1, f2, f3, f4, f5);
-        setRotationAngles(f, f1, f2, f3, f4, f5, e);
+    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         Base.render(f5);
         Plate1.render(f5);
         Plate2.render(f5);
@@ -289,10 +287,6 @@ public class ModelFusionStation extends ModelBase {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
-    }
-
-    public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
     }
 
 }

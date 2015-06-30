@@ -33,11 +33,6 @@ public class BlockFusionStation extends Block implements ITileEntityProvider {
     }
 
     @Override
-    public boolean isVisuallyOpaque() {
-        return false;
-    }
-
-    @Override
     public boolean isOpaqueCube() {
         return false;
     }
