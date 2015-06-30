@@ -11,7 +11,7 @@ public class RenderFusionStation extends TileEntitySpecialRenderer {
     private static final ModelFusionStation model = new ModelFusionStation();
 
     private static final ResourceLocation textureLocation =
-            new ResourceLocation("magis:textures/blocks/Evercrystal.png");
+            new ResourceLocation("magis:textures/blocks/SocketPlate.png");
 
     @Override
     public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float partialTicks, int destroyStage) {
