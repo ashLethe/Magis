@@ -23,5 +23,6 @@ public class RenderFusionStation extends TileEntitySpecialRenderer {
         model.render(null, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.03125F);
 
         GL11.glPopMatrix();
+        //TODO Add item in socket rendering code
     }
 }

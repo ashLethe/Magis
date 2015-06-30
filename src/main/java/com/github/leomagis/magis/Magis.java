@@ -48,9 +48,7 @@ public class Magis {
     //Creative tab declaration
     public static final CreativeTabs tabMagis = new CreativeTabs("tabMagis") {
         @Override
-        public Item getTabIconItem() {
-            return Item.getItemFromBlock(evercrystal);
-        }
+        public Item getTabIconItem() {return crystalShard;}
     };
 
     @SuppressWarnings("unused")
@@ -69,7 +67,7 @@ public class Magis {
 
         //Item Initialization
         crystalShard = new ItemCrystalShard();
-        elementalCompound = new ItemElementalCompound();
+        elementalCompound = new ItemElementalCompound(); //TODO add mob drop code
 
         //Item registration
         GameRegistry.registerItem(crystalShard, "itemCrystalShard");

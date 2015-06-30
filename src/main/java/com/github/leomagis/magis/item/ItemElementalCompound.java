@@ -34,5 +34,4 @@ public class ItemElementalCompound extends Item {
             subItems.add(new ItemStack(item, 1, i));
         }
     }
-
 }
