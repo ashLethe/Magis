@@ -29,7 +29,7 @@ public class BlockFusionStation extends Block implements ITileEntityProvider {
 
     @Override
     public boolean isFullCube() {
-        return false;
+        return true;
     }
 
     @Override
@@ -95,4 +95,10 @@ public class BlockFusionStation extends Block implements ITileEntityProvider {
                             pos.getX(), pos.getY(), pos.getZ(), itemStack));
         }
     }
+
+    @Override
+    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock) {
+        ((TileFusionStation) worldIn.getTileEntity(pos)).performRecipe();
+    }
+
 }

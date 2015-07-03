@@ -28,7 +28,6 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
     public void ejectItem(int index) {
         ItemStack stackInSlot = getStackInSlotOnClosing(index);
         if(stackInSlot == null) {return;}
-        cancelCurrentRecipe();
 
         worldObj.spawnEntityInWorld(new EntityItem(worldObj,
                         pos.getX()+0.5, pos.getY()+1.0, pos.getZ()+0.5,
@@ -37,7 +36,6 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
 
     public ItemStack setSocketContents(int index, ItemStack itemStack) {
         if(!isItemValidForSlot(index, itemStack)) {return itemStack;}
-        cancelCurrentRecipe();
         if(getStackInSlot(index) != null) {ejectItem(index);}
 
         ItemStack returnStack = null;
@@ -54,12 +52,17 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
             }
         }
 
-        if(index == 4) {performRecipe();}
+        performRecipe();
 
         return returnStack;
     }
 
-    private void performRecipe() {
+    public void performRecipe() {
+        if(!worldObj.isBlockPowered(pos)) {
+            cancelCurrentRecipe();
+            return;
+        }
+
         ItemStack centerStack = inventoryContents[4];
 
         List<ItemStack> otherStacksList = new ArrayList<ItemStack>(8);
@@ -81,7 +84,7 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
         worldObj.markBlockForUpdate(pos);
     }
 
-    private void cancelCurrentRecipe() {
+    public void cancelCurrentRecipe() {
         recipeTicksRemaining = 0;
         currentRecipeResult = null;
         worldObj.markBlockForUpdate(pos);
@@ -96,7 +99,6 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
                 worldObj.spawnEntityInWorld(new EntityItem(worldObj,
                                 pos.getX()+0.5, pos.getY()+1.0, pos.getZ()+0.5,
                                 ItemStack.copyItemStack(currentRecipeResult)));
-                currentRecipeResult = null;
                 clear();
             }
         }
@@ -119,7 +121,7 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
     public ItemStack decrStackSize(int index, int count) {
         ItemStack stackInSlot = getStackInSlot(index);
         if(stackInSlot == null) {return null;}
-        cancelCurrentRecipe();
+        performRecipe();
 
         if(stackInSlot.stackSize <= count) {
             setInventorySlotContents(index, null);
@@ -142,13 +144,14 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
     @Override
     public void setInventorySlotContents(int index, ItemStack stack) {
         if(index < 0 || index >= inventoryContents.length) {return;}
-        cancelCurrentRecipe();
 
         int stackLimit = getInventoryStackLimit();
         if(stack != null && stack.stackSize > stackLimit) {stack.stackSize = stackLimit;}
 
         inventoryContents[index] = stack;
         markDirty();
+
+        performRecipe();
     }
 
     @Override
