@@ -16,6 +16,8 @@ import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityVillager;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -34,7 +36,7 @@ public class Magis {
 
     public static final String MODID = "magis";
     public static final String NAME = "Magis";
-    public static final String VERSION = "0.2.2";
+    public static final String VERSION = "0.3.2";
 
     public static SimpleNetworkWrapper networkWrapper;
 
@@ -76,7 +78,7 @@ public class Magis {
 
         //Item Initialization
         crystalShard = new ItemCrystalShard();
-        elementalCompound = new ItemElementalCompound(); //TODO add mob drop code
+        elementalCompound = new ItemElementalCompound();
 
         //Item registration
         GameRegistry.registerItem(crystalShard, "itemCrystalShard");
@@ -115,39 +117,52 @@ public class Magis {
 		ItemStack stackAura = new ItemStack(elementalCompound, 1, EnumCompoundType.AURA.ordinal());
 		ItemStack stackAiry = new ItemStack(elementalCompound, 1, EnumCompoundType.AIRY.ordinal());
 		ItemStack stackProximity = new ItemStack(elementalCompound, 1, EnumCompoundType.PROXIMITY.ordinal());
+		ItemStack stackAuraRune = new ItemStack(elementalCompound, 1, EnumCompoundType.AURA_RUNE.ordinal());
 
 		ItemStack stackAquis = new ItemStack(elementalCompound, 1, EnumCompoundType.AQUIS.ordinal());
 		ItemStack stackFluidic = new ItemStack(elementalCompound, 1, EnumCompoundType.FLUIDIC.ordinal());
 		ItemStack stackWatery = new ItemStack(elementalCompound, 1, EnumCompoundType.WATERY.ordinal());
+		ItemStack stackAquisRune = new ItemStack(elementalCompound, 1, EnumCompoundType.AQUIS_RUNE.ordinal());
 
 		ItemStack stackChronus = new ItemStack(elementalCompound, 1, EnumCompoundType.CHRONUS.ordinal());
+		ItemStack stackChronusRune = new ItemStack(elementalCompound, 1, EnumCompoundType.CHRONUS_RUNE.ordinal());
 
 		ItemStack stackEartha = new ItemStack(elementalCompound, 1, EnumCompoundType.EARTHA.ordinal());
 		ItemStack stackEarthy = new ItemStack(elementalCompound, 1, EnumCompoundType.EARTHY.ordinal());
 		ItemStack stackMetallic = new ItemStack(elementalCompound, 1, EnumCompoundType.METALLIC.ordinal());
 		ItemStack stackSolid = new ItemStack(elementalCompound, 1, EnumCompoundType.SOLID.ordinal());
+		ItemStack stackEarthaRune = new ItemStack(elementalCompound, 1, EnumCompoundType.EARTHA_RUNE.ordinal());
 
 		ItemStack stackEliquis = new ItemStack(elementalCompound, 1, EnumCompoundType.ELIQUIS.ordinal());
 		ItemStack stackElectric = new ItemStack(elementalCompound, 1, EnumCompoundType.ELECTRIC.ordinal());
 		ItemStack stackLight = new ItemStack(elementalCompound, 1, EnumCompoundType.LIGHT.ordinal());
 		ItemStack stackMagnetic = new ItemStack(elementalCompound, 1, EnumCompoundType.MAGNETIC.ordinal());
+		ItemStack stackEliquisRune = new ItemStack(elementalCompound, 1, EnumCompoundType.ELIQUIS_RUNE.ordinal());
 
 		ItemStack stackFiirus = new ItemStack(elementalCompound, 1, EnumCompoundType.FIIRUS.ordinal());
 		ItemStack stackHeat = new ItemStack(elementalCompound, 1, EnumCompoundType.HEAT.ordinal());
 		ItemStack stackKinetic = new ItemStack(elementalCompound, 1, EnumCompoundType.KINETIC.ordinal());
 		ItemStack stackPlasma = new ItemStack(elementalCompound, 1, EnumCompoundType.PLASMA.ordinal());
+		ItemStack stackFiirusRune = new ItemStack(elementalCompound, 1, EnumCompoundType.FIIRUS_RUNE.ordinal());
 
 		ItemStack stackPsycos = new ItemStack(elementalCompound, 1, EnumCompoundType.PSYCOS.ordinal());
+		ItemStack stackPsycosRune = new ItemStack(elementalCompound, 1, EnumCompoundType.PSYCOS_RUNE.ordinal());
 
 		ItemStack stackYan = new ItemStack(elementalCompound, 1, EnumCompoundType.YAN.ordinal());
 		ItemStack stackLife = new ItemStack(elementalCompound, 1, EnumCompoundType.LIFE.ordinal());
 		ItemStack stackOrder = new ItemStack(elementalCompound, 1, EnumCompoundType.ORDER.ordinal());
 		ItemStack stackPositive = new ItemStack(elementalCompound, 1, EnumCompoundType.POSITIVE.ordinal());
+		ItemStack stackYanRune = new ItemStack(elementalCompound, 1, EnumCompoundType.YAN_RUNE.ordinal());
 
 		ItemStack stackYin = new ItemStack(elementalCompound, 1, EnumCompoundType.YIN.ordinal());
 		ItemStack stackChaotic = new ItemStack(elementalCompound, 1, EnumCompoundType.CHAOTIC.ordinal());
 		ItemStack stackDeath = new ItemStack(elementalCompound, 1, EnumCompoundType.DEATH.ordinal());
 		ItemStack stackNegative	= new ItemStack(elementalCompound, 1, EnumCompoundType.NEGATIVE.ordinal());
+		ItemStack stackYinRune = new ItemStack(elementalCompound, 1, EnumCompoundType.YIN_RUNE.ordinal());
+
+		ItemStack stackCobble = new ItemStack(Blocks.cobblestone);
+		ItemStack stackIron = new ItemStack(Items.iron_ingot);
+		ItemStack stackGold = new ItemStack(Items.gold_ingot);
 
 
         FusionRecipeRegistry.registerRecipe(
@@ -164,43 +179,99 @@ public class Magis {
 		);
 		FusionRecipeRegistry.registerRecipe(
 				stackAura,
+					null,
 						stackAiry,
 						stackProximity
 		);
 		FusionRecipeRegistry.registerRecipe(
 				stackAquis,
+					null,
 						stackWatery,
 						stackFluidic
 		);
 		FusionRecipeRegistry.registerRecipe(
 				stackEartha,
+					null,
 						stackEarthy,
 						stackMetallic,
 						stackSolid);
 		FusionRecipeRegistry.registerRecipe(
 				stackEliquis,
+					null,
 						stackElectric,
 						stackLight,
 						stackMagnetic
 		);
 		FusionRecipeRegistry.registerRecipe(
 				stackFiirus,
+					null,
 						stackPlasma,
 						stackHeat,
 						stackKinetic
 		);
 		FusionRecipeRegistry.registerRecipe(
 				stackYan,
+					null,
 						stackPositive,
 						stackLife,
 						stackOrder
 		);
 		FusionRecipeRegistry.registerRecipe(
 				stackYin,
-				stackNegative,
-				stackChaotic,
-				stackDeath
-		//TODO add runic recipes
+					null,
+						stackNegative,
+						stackChaotic,
+						stackDeath
+		);
+		FusionRecipeRegistry.registerRecipe(
+				new ItemStack(elementalCompound, 3, EnumCompoundType.AURA_RUNE.ordinal()),
+					stackCobble,
+						stackAura,
+						stackAura,
+						stackAura
+		);
+		FusionRecipeRegistry.registerRecipe(
+				new ItemStack(elementalCompound, 3, EnumCompoundType.AQUIS_RUNE.ordinal()),
+					stackCobble,
+						stackAquis,
+						stackAquis,
+						stackAquis
+		);
+		FusionRecipeRegistry.registerRecipe(
+				new ItemStack(elementalCompound, 3, EnumCompoundType.CHRONUS_RUNE.ordinal()),
+					stackIron,
+						stackChronus,
+						stackChronus,
+						stackChronus
+		);
+		FusionRecipeRegistry.registerRecipe(
+				new ItemStack(elementalCompound, 3, EnumCompoundType.EARTHA_RUNE.ordinal()),
+					stackCobble,
+						stackEartha,
+						stackEartha,
+						stackEartha
+
+		);
+		FusionRecipeRegistry.registerRecipe(
+				new ItemStack(elementalCompound, 3, EnumCompoundType.ELIQUIS_RUNE.ordinal()),
+					stackCobble,
+						stackEliquis,
+						stackEliquis,
+						stackEliquis
+		);
+		FusionRecipeRegistry.registerRecipe(
+				new ItemStack(elementalCompound, 3, EnumCompoundType.FIIRUS_RUNE.ordinal()),
+					stackIron,
+						stackFiirus,
+						stackFiirus,
+						stackFiirus
+		);
+		FusionRecipeRegistry.registerRecipe(
+				new ItemStack(elementalCompound, 3, EnumCompoundType.PSYCOS_RUNE.ordinal()),
+					stackGold,
+						stackPsycos,
+						stackPsycos,
+						stackPsycos
 		);
 	}
 
