@@ -169,7 +169,8 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
 
     @Override
     public boolean isItemValidForSlot(int index, ItemStack stack) {
-        return stack == null || stack.getItem() == Magis.elementalCompound; //TODO make list of reagents for validation
+        if (index ==4) {return true;}
+		return stack == null || stack.getItem() == Magis.elementalCompound;
     }
 
     @Override
