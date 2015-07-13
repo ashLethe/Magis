@@ -79,7 +79,10 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
         otherStacksList.toArray(otherStacks);
 
         currentRecipeResult = FusionRecipeRegistry.getRecipeResult(centerStack, otherStacks);
-        if(currentRecipeResult == null) {return;}
+        if(currentRecipeResult == null) {
+            cancelCurrentRecipe();
+            return;
+        }
 
         recipeTicksRemaining = 100;
         worldObj.markBlockForUpdate(pos);
