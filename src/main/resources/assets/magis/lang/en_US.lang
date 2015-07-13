@@ -1,5 +1,6 @@
 tile.blockEvercrystal.name=Evercrystal
 tile.blockFusionStation.name=Fusion Station
+tile.blockElementalCentrifuge.name=Elemental Centrifuge
 
 item.itemCrystalShard.name=Evercrystal Shard
 

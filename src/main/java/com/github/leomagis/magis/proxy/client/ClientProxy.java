@@ -20,6 +20,8 @@ public class ClientProxy extends CommonProxy {
                 new ModelResourceLocation("magis:blockEvercrystal", "inventory"));
         modelRegistry.register(Item.getItemFromBlock(Magis.fusionStation), 0,
                 new ModelResourceLocation("magis:blockFusionStation", "inventory"));
+        modelRegistry.register(Item.getItemFromBlock(Magis.elementalCentrifuge), 0,
+				new ModelResourceLocation("magis:blockElementalCentrifuge", "inventory"));
 
         modelRegistry.register(Magis.crystalShard, 0,
                 new ModelResourceLocation("magis:itemCrystalShard", "inventory"));

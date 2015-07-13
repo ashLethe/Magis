@@ -7,7 +7,7 @@ import net.minecraft.block.material.Material;
 public class BlockEvercrystal extends Block {
 
     public BlockEvercrystal() {
-        super(Material.iron);
+        super (Material.iron);
 
         setCreativeTab(Magis.tabMagis);
         setUnlocalizedName("blockEvercrystal");

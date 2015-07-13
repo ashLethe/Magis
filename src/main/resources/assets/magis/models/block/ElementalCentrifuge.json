@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "magis:blocks/ElementalCentrifugeSide",
+    "down": "magis:blocks/ElementalCentrifugeSide",
+    "up": "magis:blocks/ElementalCentrifugeTop",
+    "north": "magis:blocks/ElementalCentrifugeSide",
+    "east":"magis:blocks/ElementalCentrifugeSide",
+    "south": "magis:blocks/ElementalCentrifugeSide",
+    "west": "magis:blocks/ElementalCentrifugeSide"
+  }
+}

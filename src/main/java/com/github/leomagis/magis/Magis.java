@@ -1,5 +1,6 @@
 package com.github.leomagis.magis;
 
+import com.github.leomagis.magis.block.BlockElementalCentrifuge;
 import com.github.leomagis.magis.block.BlockEvercrystal;
 import com.github.leomagis.magis.block.BlockFusionStation;
 import com.github.leomagis.magis.entity.tile.TileFusionStation;
@@ -36,13 +37,14 @@ public class Magis {
 
     public static final String MODID = "magis";
     public static final String NAME = "Magis";
-    public static final String VERSION = "0.3.2";
+    public static final String VERSION = "0.4.2";
 
     public static SimpleNetworkWrapper networkWrapper;
 
     //block declaration
     public static BlockEvercrystal evercrystal;
     public static BlockFusionStation fusionStation;
+	public static BlockElementalCentrifuge elementalCentrifuge;
 
     //Item declaration
     public static ItemCrystalShard crystalShard;
@@ -68,10 +70,12 @@ public class Magis {
         //block Initialization
         evercrystal = new BlockEvercrystal();
         fusionStation = new BlockFusionStation();
+		elementalCentrifuge = new BlockElementalCentrifuge();
 
         //block registration
         GameRegistry.registerBlock(evercrystal, "blockEvercrystal");
         GameRegistry.registerBlock(fusionStation, "blockFusionStation");
+		GameRegistry.registerBlock(elementalCentrifuge, "blockElementalCentrifuge");
 
         //Tile Entity registration
         GameRegistry.registerTileEntity(TileFusionStation.class, "tileFusionStation");
