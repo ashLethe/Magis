@@ -52,6 +52,7 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
             }
         }
 
+        worldObj.markBlockForUpdate(pos);
         performRecipe();
 
         return returnStack;
@@ -129,6 +130,8 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
         }
 
         stackInSlot.stackSize -= count;
+        markDirty();
+
         return new ItemStack(stackInSlot.getItem(), count, stackInSlot.getItemDamage());
     }
 
@@ -151,6 +154,7 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
         inventoryContents[index] = stack;
         markDirty();
 
+        worldObj.markBlockForUpdate(pos);
         performRecipe();
     }
 
@@ -195,6 +199,7 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
         for(int i=0;i<inventoryContents.length;++i) {
             inventoryContents[i] = null;
         }
+        worldObj.markBlockForUpdate(pos);
     }
 
     @Override
@@ -215,7 +220,7 @@ public class TileFusionStation extends TileEntity implements IInventory, IUpdate
     @Override
     public Packet getDescriptionPacket() {
         NBTTagCompound tagCompound = new NBTTagCompound();
-        tagCompound.setInteger("recipeTicksRemaining", recipeTicksRemaining);
+        writeToNBT(tagCompound);
 
         return new S35PacketUpdateTileEntity(pos, 0, tagCompound);
     }
