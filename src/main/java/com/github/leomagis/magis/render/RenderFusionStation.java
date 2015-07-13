@@ -1,4 +1,4 @@
-package com.github.leomagis.magis.entity.renderer;
+package com.github.leomagis.magis.render;
 
 import com.github.leomagis.magis.model.ModelFusionStation;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

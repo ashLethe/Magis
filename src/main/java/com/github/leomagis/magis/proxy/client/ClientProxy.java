@@ -1,10 +1,10 @@
 package com.github.leomagis.magis.proxy.client;
 
 import com.github.leomagis.magis.Magis;
-import com.github.leomagis.magis.entity.renderer.RenderFusionStation;
 import com.github.leomagis.magis.entity.tile.client.TileFusionStationClient;
 import com.github.leomagis.magis.enums.EnumCompoundType;
 import com.github.leomagis.magis.proxy.CommonProxy;
+import com.github.leomagis.magis.render.RenderFusionStation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemModelMesher;
 import net.minecraft.client.resources.model.ModelResourceLocation;
