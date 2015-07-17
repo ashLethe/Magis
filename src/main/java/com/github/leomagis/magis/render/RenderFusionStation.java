@@ -33,7 +33,7 @@ public class RenderFusionStation extends TileEntitySpecialRenderer {
             if(stackInSlot == null) {continue;}
 
             GL11.glPushMatrix();
-            GL11.glTranslated(x+0.25+((i/3)*0.25), y+1.25, z+0.25+((i%3)*0.25));
+            GL11.glTranslated(x+0.25+((i/3)*0.25), y+1.25, z+0.25+((i%3)*0.25)); //TODO Fix item positions
             GL11.glRotated(((fusionStation.itemSpinTicks%80)+partialTicks)*4.5, 0.0, 1.0, 0.0);
             GL11.glScaled(0.25, 0.25, 0.25);
 

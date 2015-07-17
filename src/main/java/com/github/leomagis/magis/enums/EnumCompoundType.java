@@ -7,11 +7,13 @@ public enum EnumCompoundType {
     AIRY      ("AuraAir"),
     PROXIMITY ("AuraProximity"),
     AURA_RUNE    ("AuraRune"),
+    //TODO Add "Empty"
 
     AQUIS     ("Aquis"),
     WATERY    ("AquisWater"),
     FLUIDIC   ("AquisFluid"),
     AQUIS_RUNE   ("AquisRune"),
+    //TODO Add "Flowing"
 
     ELIQUIS   ("Eliquis"),
     ELECTRIC  ("EliquisElectric"),
