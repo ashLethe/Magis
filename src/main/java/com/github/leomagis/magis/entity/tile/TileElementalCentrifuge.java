@@ -6,37 +6,40 @@ import com.github.leomagis.magis.recipe.CentrifugeRecipeRegistry;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Tuple;
 
 public class TileElementalCentrifuge extends TileEntity implements IUpdatePlayerListBox {
 
 	private int currentFuel = 0;
-	private int recipeTickRemaining = 0;
-	
-	private ItemStack[] inventoryContents= new ItemStack[10];
+	private int recipeTicksRemaining = 0;
 
-	private Tuple[] currentRecipeResult = new Tuple[8];
-
-	private ItemStack ingredient;
-
-	private ItemStack fuel;
+    private ItemStack[] currentRecipeResult;
+	private ItemStack[] inventoryContents = new ItemStack[10];
 
 	public void doRecipe () {
-		ingredient = inventoryContents[9] != null ? inventoryContents[9] : null;
-		fuel = inventoryContents[10];
-		recipeTickRemaining = 40;
-		currentRecipeResult = CentrifugeRecipeRegistry.getRecipeResult(ingredient);
+		currentRecipeResult = CentrifugeRecipeRegistry.getRecipeResults(inventoryContents[8]);
+        if(currentRecipeResult == null) {
+            cancelCurrentRecipe();
+            return;
+        }
 
+        recipeTicksRemaining = 40;
+        worldObj.markBlockForUpdate(pos);
 	}
-	
+
+    private void cancelCurrentRecipe() {
+        currentRecipeResult = null;
+        recipeTicksRemaining = 0;
+        worldObj.markBlockForUpdate(pos);
+    }
+
 	@Override
 	public void update () {
-		if (currentFuel == 0 && fuel.getItem() == Magis.elementalCompound && fuel.getItemDamage() == EnumCompoundType.KINETIC.ordinal()) {
-			currentFuel = 2000;
-			fuel = new ItemStack(Magis.elementalCompound, fuel.stackSize - 1, EnumCompoundType.KINETIC.ordinal());
+        ItemStack fuelStack = inventoryContents[9];
+		if (currentFuel == 0 && fuelStack.getItem() == Magis.elementalCompound &&
+            fuelStack.getItemDamage() == EnumCompoundType.KINETIC.ordinal()) {
+
+            currentFuel = 2000;
+			--fuelStack.stackSize;
 		}
-		if (currentFuel > 2000) {
-			currentFuel = 2000;
-		}
-	}
+    }
 }

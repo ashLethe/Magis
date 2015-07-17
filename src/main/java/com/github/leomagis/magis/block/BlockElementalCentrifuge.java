@@ -2,6 +2,8 @@ package com.github.leomagis.magis.block;
 
 import com.github.leomagis.magis.Magis;
 import com.github.leomagis.magis.entity.tile.TileElementalCentrifuge;
+import com.github.leomagis.magis.entity.tile.client
+        .TileElementalCentrifugeClient;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -23,7 +25,7 @@ public class BlockElementalCentrifuge extends Block implements ITileEntityProvid
 	@Override
 	public TileEntity createNewTileEntity (World worldIn, int meta) {
 		if(worldIn.isRemote) {
-			return new TileElementalCentrifuge();
+			return new TileElementalCentrifugeClient();
 		}
 		return new TileElementalCentrifuge();
 	}
