@@ -34,7 +34,7 @@ public class CentrifugeRecipeRegistry {
         for(int i=0;i<numResults;++i) {
             int pairIndex = i * 2;
             resultItems[i] = (ItemStack) results[pairIndex];
-            resultChances[i] = (double) results[pairIndex+1];
+            resultChances[i] = (Double) results[pairIndex+1];
         }
 
         recipes.add(new Tuple(ingredient, new Tuple(resultItems, resultChances)));
