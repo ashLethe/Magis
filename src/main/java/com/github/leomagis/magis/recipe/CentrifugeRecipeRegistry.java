@@ -24,7 +24,7 @@ public class CentrifugeRecipeRegistry {
      * centrifuge, whereas the double value is the percent chance that it will
      * be produced.
      */
-	public void registerRecipe (ItemStack ingredient, Object[] results) {
+	public static void registerRecipe (ItemStack ingredient, Object[] results) {
         if (ingredient == null || !isValidResults(results)) {return;}
 
         int numResults = results.length / 2;
@@ -71,4 +71,5 @@ public class CentrifugeRecipeRegistry {
         }
 		return true;
 	}
+
 }

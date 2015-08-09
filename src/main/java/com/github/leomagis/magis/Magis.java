@@ -8,6 +8,7 @@ import com.github.leomagis.magis.enums.EnumCompoundType;
 import com.github.leomagis.magis.item.ItemCrystalShard;
 import com.github.leomagis.magis.item.ItemElementalCompound;
 import com.github.leomagis.magis.proxy.CommonProxy;
+import com.github.leomagis.magis.recipe.CentrifugeRecipeRegistry;
 import com.github.leomagis.magis.recipe.FusionRecipeRegistry;
 import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,6 +22,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Tuple;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -28,6 +30,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -117,7 +120,7 @@ public class Magis {
 				"SSS",
 				'S', stackShard);
 
-        //Magis recipe registration
+        //Fusion recipe registration
 		ItemStack stackAura = new ItemStack(elementalCompound, 1, EnumCompoundType.AURA.ordinal());
 		ItemStack stackAiry = new ItemStack(elementalCompound, 1, EnumCompoundType.AIRY.ordinal());
 		ItemStack stackProximity = new ItemStack(elementalCompound, 1, EnumCompoundType.PROXIMITY.ordinal());
@@ -277,6 +280,9 @@ public class Magis {
 						stackPsycos,
 						stackPsycos
 		);
+
+		//Centrifuge Recipe Registration
+		CentrifugeRecipeRegistry.registerRecipe(new ItemStack(Blocks.redstone_ore), new Object[] {stackEarthy, 0.01, stackElectric, 0.07, stackMagnetic, 0.06});
 	}
 
 
@@ -285,6 +291,7 @@ public class Magis {
     public void init(FMLInitializationEvent event) {
         proxy.registerRenderers();
 		MinecraftForge.EVENT_BUS.register(this);
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
     }
 	@SubscribeEvent
 	public void onLivingDropsEvent(LivingDropsEvent event) {
